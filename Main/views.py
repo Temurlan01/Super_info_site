@@ -23,8 +23,8 @@ class HomeSearchView(TemplateView):
     def get_context_data(self, **kwargs, ):
         search_word = self.request.GET['search']
         context = {
-            'Publication_list': Publication.objects.filter(is_active=True).filter(
-            Q(title__icontains=search_word) | Q(descriptions__icontains=search_word),
+            'Publication_list': Publication.objects.filter(is_activ=True).filter(
+            Q(name__icontains=search_word) | Q(short_descriptions__icontains=search_word),
             )
         }
         return context
