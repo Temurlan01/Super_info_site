@@ -38,7 +38,7 @@
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">Comments</h2>
-                            {% for item in PublicationComment.all %}
+                            {% for item in PublicationComment %}
                             <hr class="tm-hr-primary tm-mb-45">
                              <div class="tm-comment-reply tm-mb-45">
                                 <hr>
@@ -46,7 +46,7 @@
                                     <figure class="tm-comment-figure">
                                         <figcaption class="tm-color-primary text-center">{{item.name}}</figcaption>
                                     </figure>
-                                    <p>{{item.Text}}</p>
+                                    <p>{{item.text}}</p>
                                 </div>
                                 <span class="d-block text-right tm-color-primary">{{item.created_at}}</span>
 
