@@ -35,5 +35,8 @@ class Publication_Detail(models.Model):
 
 class PublicationComment(models.Model):
     Publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     text = models.TextField()
     created_at = models.DateField(auto_now_add=True)
+
+
