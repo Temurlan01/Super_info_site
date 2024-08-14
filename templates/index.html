@@ -35,19 +35,19 @@
                     </a>                    
                     <p class="tm-pt-30">
                         {{item.short_descriptions }}
-                    </p>
+                    </p>  {% for Hashtag in Hashtag.Publication.all  %}
                     <div class="d-flex justify-content-between tm-pt-45">
-                        {% for Hashtag in Publication_list.Hashtag.all %}
-                        <span class="tm-color-primary">{% url 'hashtag' hashtag.id %}Хештеги: #{{ Hashtag.title }}</span>
-                        {% endfor %}
-                        <span class="tm-color-primary">{{ item.my_date}}</span>
-                    </div>
+
+                        <span class="tm-color-primary">Хештеги: #{{Hashtag.title }}</span>
+
+                        <span class="tm-color-primary">{{ Hashtag.my_date}}</span>
+                    </div>{% endfor %}
                     <hr>
                     <div class="d-flex justify-content-between">
                         <span>36 comments</span>
                     </div>
                 </article>
-{% endfor %}
+            {% endfor %}
             </div>
             <div class="row tm-row tm-mt-100 tm-mb-75">
                 <div class="tm-prev-next-wrapper">

@@ -20,7 +20,7 @@
             </div>
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
-                    <div class="tm-post-full">                    
+                    <div class="tm-post-full">
                         <div class="mb-4">
 
                             <h2 class="pt-2 tm-color-primary tm-post-title">{{Publication_Detail.name}}</h2>
@@ -30,11 +30,11 @@
                             <img src="{{Publication_Detail.images.url }}" alt="Image" class="img-fluid">
 
                             <p>{{Publication_Detail.descriptions}}</p>
-                            {% for item in Publication_list.Hashtag.all %}
-                            <span class="d-block text-right tm-color-primary">Hashtags: {{item.title }}</span>
-                            {% endfor %}
+                            {% for item in Publication_Detail.Hashtag.all %}
+                            <span class="d-block text-right tm-color-primary">Hashtags: {{item.title }}</span>  {% endfor %}
+
                         </div>
-                        
+
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">Comments</h2>
@@ -74,35 +74,30 @@
                 <aside class="col-lg-4 tm-aside-col">
                     <div class="tm-post-sidebar">
                         <hr class="mb-3 tm-hr-primary">
-                        <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>
+
+                        <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>{{ Publication_Detail.Categorys.title }}
                         <ul class="tm-mb-75 pl-5 tm-category-list">
-                            <li><a href="#" class="tm-color-primary">Family</a></li>
+                            <li><a href="#" class="tm-color-primary">{{ item.title }}</a></li>
                             <li><a href="#" class="tm-color-primary">Innovations</a></li>
                             <li><a href="#" class="tm-color-primary">Personal</a></li>
                             <li><a href="#" class="tm-color-primary">Cooking</a></li>
                             <li><a href="#" class="tm-color-primary">Education</a></li>
                             <li><a href="#" class="tm-color-primary">Finance</a></li>
                         </ul>
+
+
                         <hr class="mb-3 tm-hr-primary">
                         <h2 class="tm-mb-40 tm-post-title tm-color-primary">Related Posts</h2>
-                        <a href="#" class="d-block tm-mb-40">
+                        {% for item in Publication_list %}
+                        <a href="{% url 'Detail_url' item.id %}" class="d-block tm-mb-40">
                             <figure>
-                                <img src="{% static 'img/img-02.jpg' %}" alt="Image" class="mb-3 img-fluid">
-                                <figcaption class="tm-color-primary">Duis mollis diam nec ex viverra scelerisque a sit</figcaption>
+                                <img src="{{item.images.url }}" alt="Image" class="mb-3 img-fluid">
+                                <figcaption class="tm-color-primary">{{item.name}}</figcaption>
                             </figure>
                         </a>
-                        <a href="#" class="d-block tm-mb-40">
-                            <figure>
-                                <img src="{% static 'img/img-05.jpg' %}" alt="Image" class="mb-3 img-fluid">
-                                <figcaption class="tm-color-primary">Integer quis lectus eget justo ullamcorper ullamcorper</figcaption>
-                            </figure>
-                        </a>
-                        <a href="#" class="d-block tm-mb-40">
-                            <figure>
-                                <img src="{% static 'img/img-06.jpg' %}" alt="Image" class="mb-3 img-fluid">
-                                <figcaption class="tm-color-primary">Nam lobortis nunc sed faucibus commodo</figcaption>
-                            </figure>
-                        </a>
+                            {% endfor %}
+
+
                     </div>                    
                 </aside>
             </div>

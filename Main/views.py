@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic import View
 from django.db.models import Q
 from django.shortcuts import redirect
-from Main.models import Publication, Publication_Detail, PublicationComment
+from Main.models import Publication, Publication_Detail, PublicationComment, Hashtag
 
 
 class HomeView(TemplateView):
@@ -12,6 +12,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
             context = {
                 'Publication_list': Publication.objects.filter(is_activ=True),
+
 
                      }
             return context
@@ -24,7 +25,7 @@ class HomeSearchView(TemplateView):
         search_word = self.request.GET['search']
         context = {
             'Publication_list': Publication.objects.filter(is_activ=True).filter(
-            Q(name__icontains=search_word) | Q(short_descriptions__icontains=search_word),
+            Q(name__icontains=search_word) | Q(short_descriptions__icontains=search_word) | Q(Hashtag=search_word),
             )
         }
         return context
@@ -42,6 +43,7 @@ class PublicationDetailView(TemplateView):
             context = {
                 'Publication_Detail': Publication_Detail.objects.get(
                     id=publication_pk),
+                'Publication_list': Publication.objects.all(),
 
                     }
             return context
