@@ -2,20 +2,26 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic import View
 from django.db.models import Q
+from django.core.paginator import Paginator
 from django.shortcuts import redirect
-from Main.models import Publication, Publication_Detail, PublicationComment, Hashtag
+from Main.models import Publication, Publication_Detail, PublicationComment
+
+from Main.telegram_bot import bot
 
 
 class HomeView(TemplateView):
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
-            context = {
-                'Publication_list': Publication.objects.filter(is_activ=True),
+        publications = Publication.objects.all()
 
-
-                     }
-            return context
+        paginator = Paginator(publications, 2)
+        page_number = self.request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'Page_obj': page_obj
+                    }
+        return context
 
 
 class HomeSearchView(TemplateView):
@@ -25,7 +31,7 @@ class HomeSearchView(TemplateView):
         search_word = self.request.GET['search']
         context = {
             'Publication_list': Publication.objects.filter(is_activ=True).filter(
-            Q(name__icontains=search_word) | Q(short_descriptions__icontains=search_word) | Q(Hashtag=search_word),
+            Q(name__icontains=search_word) | Q(short_descriptions__icontains=search_word),
             )
         }
         return context
@@ -53,11 +59,12 @@ class CreatePublicationCommentView(View):
 
     def post(self, request, *args, **kwargs):
         publication_pk = kwargs['pk']
-        publication = Publication.objects.get(id=publication_pk)
+        publication = Publication_Detail.objects.get(id=publication_pk)
 
         comment_text = request.POST['comment_text']
+        name = request.POST['name']
 
-        PublicationComment.objects.create(
-            Publication=publication, text=comment_text,)
+        PublicationComment.objects.create(Publication_Detail=publication, text=comment_text, name=name, )
+        bot.send_message(chat_id=6197731316, text='для вашей публикации написали комментарий'),
 
-        return redirect('Detail_url', pk=publication_pk)
+        return redirect('Publication_Detail_url', pk=publication_pk)
