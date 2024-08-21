@@ -68,3 +68,16 @@ class CreatePublicationCommentView(View):
         bot.send_message(chat_id=6197731316, text='для вашей публикации написали комментарий'),
 
         return redirect('Publication_Detail_url', pk=publication_pk)
+
+
+class DiscussPublicationContact(View):
+    def post(self, request, *args, **kwargs):
+
+
+        comment_text = request.POST['comment_text']
+        name = request.POST['name']
+
+        PublicationComment.objects.create(Publication_Detail=publication, text=comment_text, name=name, )
+        bot.send_message(chat_id=6197731316, text='для вашей публикации написали комментарий'),
+
+        return redirect('Publication_Detail_url', pk=publication_pk)
