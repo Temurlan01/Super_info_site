@@ -4,7 +4,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from Main.views import HomeView, ContactView, PublicationDetailView, CreatePublicationCommentView, HomeSearchView, DiscussPublicationContact
+from Main.views import HomeView, ContactView, PublicationDetailView, HomeSearchView, CreatePublicationCommentView, CreatePublicationContactView
+
+
+
 
 
 
@@ -15,7 +18,8 @@ urlpatterns = [
     path('contact/', ContactView.as_view(), name='contact_list'),
     path('Publication-detail/<int:pk>/', PublicationDetailView.as_view(), name='Publication_Detail_url'),
     path('Publication-detail/<int:pk>/create-comment/', CreatePublicationCommentView.as_view()),
-    path('contact/discuss-comment/', DiscussPublicationContact.as_view()),
+    path('contact/create-comment/', CreatePublicationContactView.as_view()),
+
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

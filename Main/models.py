@@ -36,7 +36,14 @@ class Publication_Detail(models.Model):
 class PublicationComment(models.Model):
     Publication_Detail = models.ForeignKey(Publication_Detail, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=200, verbose_name="Название")
-    text = models.TextField(verbose_name="Тест")
+    text = models.TextField(verbose_name="Текст")
     created_at = models.DateField(auto_now_add=True)
+
+
+class PublicationContact(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Название")
+    Email = models.EmailField(null=True, blank=True)
+    Subject = models.TextField(null=True, blank=True)
+    Message = models.TextField(null=True, blank=True)
 
 

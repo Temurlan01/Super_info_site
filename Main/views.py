@@ -4,7 +4,7 @@ from django.views.generic import View
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import redirect
-from Main.models import Publication, Publication_Detail, PublicationComment
+from Main.models import Publication, Publication_Detail, PublicationComment, PublicationContact
 
 from Main.telegram_bot import bot
 
@@ -15,7 +15,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         publications = Publication.objects.all()
 
-        paginator = Paginator(publications, 2)
+        paginator = Paginator(publications, 3)
         page_number = self.request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
         context = {
@@ -70,14 +70,20 @@ class CreatePublicationCommentView(View):
         return redirect('Publication_Detail_url', pk=publication_pk)
 
 
-class DiscussPublicationContact(View):
+class CreatePublicationContactView(View):
+
     def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        Email = request.POST.get('Email')
+        Subject = request.POST.get('Subject')
+        Message = request.POST.get('Message')
 
 
-        comment_text = request.POST['comment_text']
-        name = request.POST['name']
+        PublicationContact.objects.create(name=name, Email=Email, Subject=Subject, Message=Message)
+        return redirect('contact_list')
 
-        PublicationComment.objects.create(Publication_Detail=publication, text=comment_text, name=name, )
-        bot.send_message(chat_id=6197731316, text='для вашей публикации написали комментарий'),
 
-        return redirect('Publication_Detail_url', pk=publication_pk)
+
+
+
+

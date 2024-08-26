@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from Main.models import Publication, Publication_Detail, Hashtag, Categorys, PublicationComment
-
-
+from Main.models import Publication, Publication_Detail, Hashtag, Categorys, PublicationComment, PublicationContact
 
 
 @admin.register(Publication)
@@ -26,4 +24,9 @@ class CategorysAdmin(admin.ModelAdmin):
 
 @admin.register(PublicationComment)
 class PublicationCommentAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
+@admin.register(PublicationContact)
+class PublicationContactAdmin(admin.ModelAdmin):
     list_display = ["name"]
