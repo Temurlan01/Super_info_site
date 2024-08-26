@@ -80,6 +80,7 @@ class CreatePublicationContactView(View):
 
 
         PublicationContact.objects.create(name=name, Email=Email, Subject=Subject, Message=Message)
+        bot.send_message(chat_id=6197731316, text='С вами ктото хочет связатся '),
         return redirect('contact_list')
 
 
