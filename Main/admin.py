@@ -1,26 +1,26 @@
 from django.contrib import admin
-
+from modeltranslation.admin import TranslationAdmin
 from Main.models import Publication, Publication_Detail, Hashtag, Categorys, PublicationComment, PublicationContact
 
 
 @admin.register(Publication)
-class PublicationAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+class PublicationAdmin(TranslationAdmin):
+    list_display = ["id", "name"]
 
 
 @admin.register(Publication_Detail)
-class Publication_DetailAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+class Publication_DetailAdmin(TranslationAdmin):
+    list_display = ["id", "name"]
 
 
 @admin.register(Hashtag)
-class HashtagAdmin(admin.ModelAdmin):
-    list_display = ["title"]
+class HashtagAdmin(TranslationAdmin):
+    list_display = ["id", "title"]
 
 
 @admin.register(Categorys)
-class CategorysAdmin(admin.ModelAdmin):
-    list_display = ["title"]
+class CategorysAdmin(TranslationAdmin):
+    list_display = ["id", "title"]
 
 @admin.register(PublicationComment)
 class PublicationCommentAdmin(admin.ModelAdmin):

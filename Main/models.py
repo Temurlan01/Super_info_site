@@ -16,7 +16,7 @@ class Hashtag(models.Model):
 
 
 class Publication(models.Model):
-    Hashtag = models.ManyToManyField(Hashtag, null=True)
+    Hashtag = models.ManyToManyField(Hashtag)
     name = models.CharField(max_length=250, verbose_name="Название")
     short_descriptions = models.TextField(verbose_name="Краткое описание")
     images = models.ImageField(verbose_name="Изображение")
@@ -26,7 +26,7 @@ class Publication(models.Model):
 
 class Publication_Detail(models.Model):
     Categorys = models.ForeignKey(Categorys, on_delete=models.CASCADE, null=True, related_name='publication', verbose_name="Категория")
-    Hashtag = models.ManyToManyField(Hashtag, null=True, verbose_name="Хэштег")
+    Hashtag = models.ManyToManyField(Hashtag, verbose_name="Хэштег")
     name = models.CharField(max_length=250, verbose_name="Название")
     descriptions = models.TextField(verbose_name="Описание")
     images = models.ImageField(verbose_name="Изаброжение")
@@ -34,7 +34,7 @@ class Publication_Detail(models.Model):
 
 
 class PublicationComment(models.Model):
-    Publication_Detail = models.ForeignKey(Publication_Detail, on_delete=models.CASCADE, null=True)
+    Publication_Detail = models.ForeignKey(Publication_Detail, on_delete=models.CASCADE, null=True, related_name='comments')
     name = models.CharField(max_length=200, verbose_name="Название")
     text = models.TextField(verbose_name="Текст")
     created_at = models.DateField(auto_now_add=True)

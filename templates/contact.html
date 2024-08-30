@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 <body>
@@ -100,10 +101,10 @@
             </div>      
             <footer class="row tm-row">
                 <div class="col-md-6 col-12 tm-color-gray">
-                    Design: by Toktosun
+                    {% trans 'Дизайн: Токтосун' %}
                 </div>
                 <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2024. For students of Toktosun
+                    {% trans '2024. Студентам Токтосуна' %}
                 </div>
             </footer>
         </main>

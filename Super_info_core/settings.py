@@ -17,14 +17,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'user@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
-EMAIL_USE_TLS = True
-# Application definition
+
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,6 +33,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,6 +103,19 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+gettext = lambda s: s
+
+LANGUAGES = (
+    ('ru', gettext('Russia')),
+    ('ky', gettext('Kyrgyz')),
+)
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = "ru"
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

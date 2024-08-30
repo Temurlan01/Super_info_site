@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 
@@ -52,10 +53,10 @@
             <div class="row tm-row tm-mt-100 tm-mb-75">
                 <div class="tm-prev-next-wrapper">
                     {% if Page_obj.has_previous %}
-                    <a href="?page={{ Page_obj.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
+                    <a href="?page={{ Page_obj.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">{% trans 'Предыдушее' %}</a>
                     {% endif %}
                     {% if Page_obj.has_next %}
-                    <a href="?page={{ Page_obj.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    <a href="?page={{ Page_obj.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">{% trans 'Следующее' %}</a>
                     {% endif %}
                 </div>
                 <div class="tm-paging-wrapper">

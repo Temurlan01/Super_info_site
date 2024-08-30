@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-28 19:30+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\Super_info_core\settings.py:110
+msgid "Russia"
+msgstr ""
+
+#: .\Super_info_core\settings.py:111
+msgid "Kyrgyz"
+msgstr ""
+
+#: .\templates\base.html:44 .\templates\contact.html:104
+msgid "Дизайн: Токтосун"
+msgstr "Дизай Токтосундун"
+
+#: .\templates\base.html:47
+msgid "2024 г. Для студентов Токтосуна"
+msgstr "2024 г. Токтосундун студенттерине"
+
+#: .\templates\contact.html:107
+#, fuzzy
+msgid "2024. Студентам Токтосуна"
+msgstr "2024 г. Токтосундун студенттерине"
+
+#: .\templates\index.html:56
+msgid "Предыдушее"
+msgstr "Мурунку"
+
+#: .\templates\index.html:59
+msgid "Следующее"
+msgstr "Кийинки"
